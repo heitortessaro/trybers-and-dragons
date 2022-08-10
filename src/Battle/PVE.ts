@@ -12,9 +12,9 @@ export default class PVE extends Battle {
   }
 
   fight(): number {
-    console.log('-------ANTES---------');
-    const jogadores = [...this._monsters, this.player];
-    jogadores.map((j) => console.log(`${j.lifePoints}`));
+    // console.log('-------INICIO PVE---------');
+    // const jogadores = [...this._monsters, this.player];
+    // jogadores.map((j) => console.log(`${j.lifePoints}`));
     while (
       this.player.lifePoints > 0 
       && this._monsters.every((m) => m.lifePoints > 0)) {
@@ -24,13 +24,14 @@ export default class PVE extends Battle {
       const enemyIndex = this._monsters.findIndex((m) => m.lifePoints > 0);
       this.player.attack(this._monsters[enemyIndex]);
       this._monsters.forEach((m) => m.attack(this.player));
-      console.log('-------DURANTE---------');
-      [...this._monsters, this.player]
-        .map((j) => console.log(`${j.lifePoints}`));
+      // console.log('-------DURANTE---------');
+      // [...this._monsters, this.player]
+      //   .map((j) => console.log(`${j.lifePoints}`));
     }
     // console.log('-------DEPOIS---------');
     // const jogadoresFINAL = [...this._monsters, this.player];
     // jogadoresFINAL.map((j) => console.log(`${j.lifePoints}`));
+    // console.log('-------FIM PVE---------');
     return this.player.lifePoints === -1 ? -1 : 1;
   }
 }

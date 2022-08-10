@@ -11,6 +11,7 @@ export default class PVP extends Battle {
   }
 
   fight(): number {
+    // console.log('-------INICIO PVP---------');
     // let counter = 0;
     // console.log('ANTES');
     // console.log(this.player.lifePoints);
@@ -32,6 +33,7 @@ export default class PVP extends Battle {
     // console.log('Depois');
     // console.log(this.player.lifePoints);
     // console.log(this._player2.lifePoints);
+    // console.log('-------FIM PVP---------');
     return this.player.lifePoints === -1 ? -1 : 1;
   }
 }
