@@ -25,7 +25,8 @@ export default class Character implements Fighter {
     this._race = race;
     this._archetype = archetype;
     this._maxLifePoints = race.maxLifePoints / 2;
-    this._lifePoints = Math.floor(this._maxLifePoints / 2);
+    // this._lifePoints = Math.floor(this._maxLifePoints / 2);
+    this._lifePoints = this._maxLifePoints;
     this._strength = getRandomInt(1, 10);
     this._defense = getRandomInt(1, 10);
     this._energy = {
@@ -58,12 +59,15 @@ export default class Character implements Fighter {
     return this._dexterity;
   }
 
+  // public get energy(): Energy {
+  //   const energyTemp:Energy = {
+  //     type_: this._energy.type_,
+  //     amount: this._energy.amount,
+  //   };
+  //   return energyTemp;
+  // }
   public get energy(): Energy {
-    const energyTemp:Energy = {
-      type_: this._energy.type_,
-      amount: this._energy.amount,
-    };
-    return energyTemp;
+    return { type_: this._energy.type_, amount: this._energy.amount };
   }
 
   public receiveDamage(attackPoints:number): number {
@@ -78,44 +82,56 @@ export default class Character implements Fighter {
   }
 
   public levelUp(): void {
-    // console.log(` ANTES----------------------------
-    //   this._strength: ${this._strength}
-    //   this._dexterity ${this._dexterity}
-    //   this._defense : ${this._defense}
-    //   this._energy.amount: ${this._energy.amount}
-    //   this._maxLifePoints: ${this._maxLifePoints},
-    //   this._lifePoints: ${this._lifePoints}
-    //   this._race.maxLifePoints: ${this._race.maxLifePoints},`);
-    const variation = getRandomInt(1, 10);
-    // this._maxLifePoints += variation;
-    this._strength += variation;
-    this._dexterity += variation;
-    this._defense += variation;
+    this._maxLifePoints += getRandomInt(1, 10);
+    this._strength += getRandomInt(1, 10);
+    this._dexterity += getRandomInt(1, 10);
+    this._defense += getRandomInt(1, 10);
     this._energy.amount = 10;
-    // if ((this._maxLifePoints + variation) > this._race.maxLifePoints) { 
-    //   this._maxLifePoints = this._race.maxLifePoints; 
-    //   this._lifePoints = this._race.maxLifePoints;
-    // } else {
-    //   this._lifePoints = Math.floor(this._maxLifePoints + variation);
-    //   this._maxLifePoints += variation;
-    // }
-    if ((this._maxLifePoints + variation) > this._race.maxLifePoints) { 
-      this._maxLifePoints = this._race.maxLifePoints; 
-      this._lifePoints = this._race.maxLifePoints;
-    } else {
-      this._maxLifePoints += variation;
-      this._lifePoints = this._maxLifePoints;
+    if (this._maxLifePoints > this._race.maxLifePoints) {
+      this._maxLifePoints = this._race.maxLifePoints;
     }
-    // console.log(` ----------------------------
-    //   variation: ${variation}
-    //   this._strength: ${this._strength}
-    //   this._dexterity ${this._dexterity}
-    //   this._defense : ${this._defense}
-    //   this._energy.amount: ${this._energy.amount}
-    //   this._maxLifePoints: ${this._maxLifePoints},
-    //   this._lifePoints: ${this._lifePoints}
-    //   this._race.maxLifePoints: ${this._race.maxLifePoints},`);
+    this._lifePoints = this._maxLifePoints;
   }
+
+  // public levelUp(): void {
+  //   console.log(` ANTES----------------------------
+  //     this._strength: ${this._strength}
+  //     this._dexterity ${this._dexterity}
+  //     this._defense : ${this._defense}
+  //     this._energy.amount: ${this._energy.amount}
+  //     this._maxLifePoints: ${this._maxLifePoints},
+  //     this._lifePoints: ${this._lifePoints}
+  //     this._race.maxLifePoints: ${this._race.maxLifePoints},`);
+  //   const variation = getRandomInt(1, 10);
+  //   // this._maxLifePoints += variation;
+  //   this._strength += getRandomInt(1, 10);
+  //   this._dexterity += getRandomInt(1, 10);
+  //   this._defense += getRandomInt(1, 10);
+  //   this._energy.amount = 10;
+  //   if ((this._maxLifePoints + variation) > this._race.maxLifePoints) { 
+  //     this._maxLifePoints = this._race.maxLifePoints; 
+  //     this._lifePoints = this._race.maxLifePoints;
+  //   } else {
+  //     this._lifePoints = this._maxLifePoints + variation;
+  //     this._maxLifePoints += variation;
+  //   }
+  //   // if ((this._maxLifePoints + variation) > this._race.maxLifePoints) { 
+  //   //   this._maxLifePoints = this._race.maxLifePoints; 
+  //   //   this._lifePoints = this._race.maxLifePoints;
+  //   // } else {
+  //   //   this._maxLifePoints += variation;
+  //   //   this._lifePoints = this._maxLifePoints;
+  //   // }
+  //   console.log(`DEPOIS----------------------------
+  //     variation: ${variation}
+  //     this._strength: ${this._strength}
+  //     this._dexterity ${this._dexterity}
+  //     this._defense : ${this._defense}
+  //     this._energy.amount: ${this._energy.amount}
+  //     this._maxLifePoints: ${this._maxLifePoints},
+  //     this._lifePoints: ${this._lifePoints}
+  //     this._race.maxLifePoints: ${this._race.maxLifePoints},`);
+  // }
 
   // Um Character pode subir de nível através do método levelUp, e seus atributos 
   // (maxLifePoints, strength, dexterity, defense) ficarão no mínimo 1 ponto e no máximo 
