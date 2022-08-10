@@ -12,16 +12,16 @@ export default class PVP extends Battle {
 
   fight(): number {
     // let counter = 0;
-    console.log('ANTES');
-    console.log(this.player.lifePoints);
-    console.log(this._player2.lifePoints);
+    // console.log('ANTES');
+    // console.log(this.player.lifePoints);
+    // console.log(this._player2.lifePoints);
     while (this.player.lifePoints > 0 && this._player2.lifePoints > 0) {
       this.player.attack(this._player2);
       this._player2.attack(this.player);
-      console.log('------------');
-      console.log(this.player.lifePoints);
-      console.log(this._player2.lifePoints);
-      console.log('------------');
+      // console.log('------------');
+      // console.log(this.player.lifePoints);
+      // console.log(this._player2.lifePoints);
+      // console.log('------------');
       // counter += 1;
       // if (counter > 10) {
       //   console.log(this.player.lifePoints);
@@ -29,9 +29,9 @@ export default class PVP extends Battle {
       //   break;
       // }
     }
-    console.log('Depois');
-    console.log(this.player.lifePoints);
-    console.log(this._player2.lifePoints);
+    // console.log('Depois');
+    // console.log(this.player.lifePoints);
+    // console.log(this._player2.lifePoints);
     return this.player.lifePoints === -1 ? -1 : 1;
   }
 }
